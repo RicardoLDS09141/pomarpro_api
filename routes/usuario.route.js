@@ -62,7 +62,6 @@ if(resposta.length == 0){
 router.post('/add',(req,res)=>{
   //Guarda as irformacoes em uma variavel para facilitar o acesso
 let dados = req.body.info;
-console.log(dados)
   sql.addUsuario(
     dados.nome,
     dados.sobrenome,
@@ -82,5 +81,17 @@ console.log(dados)
   })
 
 })
+
+//Rota para buscar todos os usuários
+router.get('/buscaTodos',(req,res)=>{
+  sql.buscaTodosUsuarios().then((resposta)=>{
+    if(resposta instanceof Error){
+      res.status(500).json(resposta);
+      return;
+    }
+    res.status(200).json(resposta);
+  })
+})
+
 
 module.exports = router;

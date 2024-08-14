@@ -72,7 +72,29 @@ async function addUsuario(
         }
     }
 
-
+//Função para buscar todos os usuários do banco
+async function buscaTodosUsuarios(){
+    //Estrutura de tentativa try..catch 
+    //capturar erros
+    try{
+        //Abre conexão e informa a query
+        let [linhas] = await conexao.query(`
+            select 
+	            u.id,
+                u.nome,
+                u.sobrenome,
+                u.telefone,
+                u.email,
+                u.login
+            from tb_usuario u;
+        `)
+    //Retorna valores buscados do banco
+    return linhas;
+    }catch(e){
+        //Retorna o erro que aconteceu
+        return e;
+    }
+}
 
 
 
@@ -81,6 +103,7 @@ module.exports = {
      getUsuarios,
      getUsuarioByid,
      addUsuario,
-     autenticaUsuario
+     autenticaUsuario,
+     buscaTodosUsuarios
 
 }
