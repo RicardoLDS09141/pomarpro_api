@@ -13,7 +13,7 @@ router.post('/add',(req,res)=>{
       dados.tipo,
       dados.valor,
       dados.descricao,
-      dados.unid_medida
+      dados.unidade_medida
     ).then((resposta)=>{
       if(resposta instanceof Error){
         res.status(500).json(resposta);

@@ -1,13 +1,14 @@
 const mysql = require('mysql2/promise');
 
 const config = {
+
     host:'localhost',
     user:'root',
     password:'',
-    database:'pomarpro',
+    database:'pomarpro'
 
 }
 
 const connection = mysql.createPool(config);
 
-module.exports = connection;
+module.exports =connection;

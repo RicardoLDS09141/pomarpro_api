@@ -1,16 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const sql = require('../models/pomarcad.model');
+const sql = require('../models/rotacao.model');
 
 
 
 router.post('/add',(req,res)=>{
     //guarda as informações em uma variavel para facilitar o acesso
     let dados = req.body.info;
-  
-    sql.addpomarcad(
-      dados.apelido,
-      dados.num_linha,dados.num_coluna
+  console.log(dados)
+    sql.addmovimentacao(
+      dados.tb_tipo_id,
+      dados.quantidade,
+      dados.produto
     ).then((resposta)=>{
       console.log(resposta)
       if(resposta instanceof Error){
@@ -26,7 +27,7 @@ router.post('/add',(req,res)=>{
 
 
   router.get('/buscaTodos',(req,res)=>{
-    sql.buscaTodospomarcad().then((resposta)=>{
+    sql.buscaTodosmovimentacao().then((resposta)=>{
       if(resposta instanceof Error){
         res.status(500).json(resposta);
         return;
